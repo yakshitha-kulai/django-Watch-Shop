@@ -1,13 +1,15 @@
 from django.contrib import admin
-from .models import Watches, WatchesUploads
-
+from .models import Watches, WatchesUploads, Wishlist, Cart, WatchReview
 # Register your models here.
+
 admin.site.register(Watches)
-class WatchesUploadAdmin(admin.ModelAdmin):
-    list_display = ('name','description','price','image')
+admin.site.register(Wishlist)
+admin.site.register(Cart)
+admin.site.register(WatchReview)
 
-    list_filter = ('name','price')
+class WatchesUploadsAdmin(admin.ModelAdmin):
+    list_display = ('id' , 'name' , 'description', 'price', 'image')
+    list_filter= ('name', 'price')
+    search_fields = ['name', 'description']
 
-    list_search = ('name','description')
-
-admin.site.register(WatchesUploads,WatchesUploadAdmin)
+admin.site.register(WatchesUploads, WatchesUploadsAdmin)

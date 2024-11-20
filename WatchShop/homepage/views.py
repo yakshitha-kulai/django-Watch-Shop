@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Watches, WatchesUploads
+from .models import Watches, WatchesUploads, Wishlist, Cart
 from .forms import UploadForm
 from django.contrib.auth.decorators import login_required
 
@@ -74,7 +74,48 @@ def logout_user(request):
     logout(request)
     return redirect('home')
 
+from django.shortcuts import get_object_or_404
+def show_product(request, id):
+    product = get_object_or_404(WatchesUploads, id=id)
+    return render(request, "product.html", {"product": product} )
 
+# add To Wishlist
+def addtowish(request, id):
+    user = request.user
+    product = WatchesUploads.objects.get(id=id)
+    obj1, created = Wishlist.objects.get_or_create(user=user)
+    obj1.products.add(product)   
+    obj1.save()
+    return redirect('home')
 
+# wishlist
 
+def show_wishlist(request):
+    user = request.user
+    wish_object = Wishlist.objects.get(user=user)
+    return render(request, 'wishlist.html', {"user_products":wish_object.products.all()})
 
+def removewish(request,id):
+    product_rm = WatchesUploads.objects.get(id=id)
+    wish_object = Wishlist.objects.get(user=request.user)
+    wish_object.products.remove(product_rm)
+    return render(request, 'wishlist.html', {"user_products":wish_object.products.all()})
+
+def addtocart(request, id):
+    user = request.user
+    product = WatchesUploads.objects.get(id=id)
+    obj1, created = Cart.objects.get_or_create(user=user)
+    obj1.products.add(product)   
+    obj1.save()
+    return redirect('home')
+
+def show_cart(request):
+    user = request.user
+    wish_object = Cart.objects.get(user=user)
+    return render(request, "cart.html", {"user_products": wish_object.products.all()})
+
+def removeCart(request, id):
+    product_rm = WatchesUploads.objects.get(id=id)
+    cart_object = Cart.objects.get(user=request.user)
+    cart_object.products.remove(product_rm)
+    return render(request, 'cart.html', {"user_products":cart_object.products.all()})

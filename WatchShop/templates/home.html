@@ -15,17 +15,10 @@
     <div class="carousel-item">
       <img
         class="d-block w-100"
-        src="{%static '/homepage/images/Sample2.jpg' %}"
+        src="{% static '/homepage/images/Sample2.jpg' %}"
         alt="Sample2"
       />
     </div>
-    <!-- <div class="carousel-item">
-      <img
-        class="d-block w-100"
-        src="{%static '/homepage/images/pexels-jatin-anand-33853-125779.jpg' %}"
-        alt="Sample2"
-      />
-    </div> -->
   </div>
   <button
     class="carousel-control-prev"
@@ -64,12 +57,15 @@
 
   <!-- Card Section  -->
   <div class="card" style="width: 18rem; margin: 5px">
-    <img src="..." class="card-img-top" alt="..." />
+    <img src="{{w_item.image.url}}" class="card-img-top" alt="..." />
     <div class="card-body">
       <h5 class="card-title">{{w_item.name}}</h5>
       <p class="card-text">{{w_item.description}}</p>
       <p class="card-text">{{w_item.price}}</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <a href="{% url 'product' id=w_item.id %}" class="btn btn-primary">Click Here</a>
+      <a href="{% url 'addtowish' id=w_item.id %}" class="btn btn-primary">+ Wishlist</a>
+      <a href="{% url 'addtocart' id=w_item.id %}" class="btn btn-primary">+ Cart</a>
+
     </div>
   </div>
   {% endfor %}
