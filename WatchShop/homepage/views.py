@@ -128,6 +128,13 @@ def show_cart(request):
 
 def removeCart(request, id):
     product_rm = WatchesUploads.objects.get(id=id)
-    cart_object = Cart.objects.get(user=request.user)
-    cart_object.products.remove(product_rm)
-    return render(request, 'cart.html', {"user_products":cart_object.products.all()})
+    cart_obj = Cart.objects.get(user=request.user)
+    cart_obj.products.remove(product_rm)
+    return render(request, 'cart.html', {"user_products": cart_obj.products.all()})
+
+
+    # cart_object.products.remove(product_rm)
+    
+    # cart_products = cart_object.products.all()
+    # return render(request, 'cart.html', {"user_products":cart_products})
+    

@@ -8,7 +8,7 @@ admin.site.register(Cart)
 admin.site.register(WatchReview)
 admin.site.register(CartItem)
 class WatchesUploadsAdmin(admin.ModelAdmin):
-    list_display = ('id' , 'name' , 'description', 'price', 'image')
+    list_display = ('id' , 'name' , 'description', 'price', 'image','count')
     list_filter= ('name', 'price')
     search_fields = ['name', 'description']
 

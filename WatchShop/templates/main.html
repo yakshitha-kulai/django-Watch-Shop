@@ -36,7 +36,10 @@
         .c-button{
           margin: 7px;
         }
-
+        .loginuser{
+          color: white;
+          font-size: 1.1rem;
+        }
 
     </style>
   </head>
@@ -83,7 +86,7 @@
               shopping_cart
             </span></a>
          
-          <li class="nav-item dropdown">
+          <!-- <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
               href="#"
@@ -104,7 +107,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link disabled" href="#">Disabled</a>
-          </li>
+          </li> -->
         </ul>
         <form class="form-inline my-2 my-lg-0">
           <input
@@ -114,11 +117,13 @@
             aria-label="Search"
           />
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-            Search
+            <span class="material-symbols-outlined">
+              search
+              </span>
           </button>
         
           {% if user.is_authenticated %}
-          <h4> {{user.username}}</h4>
+          <h4 class="loginuser"> {{user.username}}</h4>
           <a class="nav-link" href="{% url 'logout' %}">Logout</a>
           {% else %}
           <a class="nav-link" href="{% url 'login' %}">Login</a>
