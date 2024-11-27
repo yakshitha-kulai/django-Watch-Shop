@@ -40,3 +40,9 @@ class WatchReview(models.Model):
     ratinf = models.PositiveSmallIntegerField(choices=[(i, str(i)) for i in range(1,6)])
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
+
+class CartItem(models.Model):
+    user = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    product=models.ForeignKey(WatchesUploads,on_delete=models.CASCADE)
+    cart_count = models.IntegerField(default=1)
+    

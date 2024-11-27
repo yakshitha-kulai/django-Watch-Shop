@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Watches, WatchesUploads, Wishlist, Cart
+from .models import Watches, WatchesUploads, Wishlist, Cart, WatchReview
 from .forms import UploadForm
 from django.contrib.auth.decorators import login_required
 
@@ -77,7 +77,9 @@ def logout_user(request):
 from django.shortcuts import get_object_or_404
 def show_product(request, id):
     product = get_object_or_404(WatchesUploads, id=id)
-    return render(request, "product.html", {"product": product} )
+    review = WatchReview.objects.filter(product=product)
+
+    return render(request, "product.html",{"product": product, "reviews": review} )
 
 # add To Wishlist
 def addtowish(request, id):
