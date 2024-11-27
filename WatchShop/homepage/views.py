@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Watches, WatchesUploads, Wishlist, Cart, WatchReview
+from .models import Watches, WatchesUploads, Wishlist, Cart, WatchReview, CartItem
 from .forms import UploadForm
 from django.contrib.auth.decorators import login_required
 
@@ -104,17 +104,27 @@ def removewish(request,id):
     return render(request, 'wishlist.html', {"user_products":wish_object.products.all()})
 
 def addtocart(request, id):
-    user = request.user
+    # user = request.user
+    # product = WatchesUploads.objects.get(id=id)
+    # obj1, created = Cart.objects.get_or_create(user=user)
+    # obj1.products.add(product)   
+    user_cart, created = Cart.objects.get_or_create(user = request.user)
+
     product = WatchesUploads.objects.get(id=id)
-    obj1, created = Cart.objects.get_or_create(user=user)
-    obj1.products.add(product)   
-    obj1.save()
+
+    cart_item, created = CartItem.objects.get_or_create(product=product, user=user_cart)
+    cart_item.product=product
+    cart_item.save()
     return redirect('home')
 
 def show_cart(request):
-    user = request.user
-    wish_object = Cart.objects.get(user=user)
-    return render(request, "cart.html", {"user_products": wish_object.products.all()})
+    user_cart, created = Cart.objects.get_or_create(user = request.user)
+    cart_object = user_cart.cartitem_set.all()
+    return render(request, "cart.html", {"user_products": cart_object})
+
+    # user = request.user
+    # wish_object = Cart.objects.get(user=user)
+    # return render(request, "cart.html", {"user_products": wish_object.products.all()})
 
 def removeCart(request, id):
     product_rm = WatchesUploads.objects.get(id=id)

@@ -16,7 +16,7 @@ class WatchesUploads(models.Model):
     description = models.TextField()
     price = models.FloatField()
     image = models.ImageField(upload_to='watches_images/') 
-    
+    count = models.IntegerField(default=1)
 
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
