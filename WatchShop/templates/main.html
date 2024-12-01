@@ -35,12 +35,16 @@
         }
         .c-button{
           margin: 7px;
+          background-color: #212529;
+
         }
         .loginuser{
           color: white;
           font-size: 1.1rem;
         }
-
+        .btnhome{
+          background-color: #212529;
+        }
     </style>
   </head>
   <body>
@@ -124,9 +128,13 @@
         
           {% if user.is_authenticated %}
           <h4 class="loginuser"> {{user.username}}</h4>
-          <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+          <a class="nav-link" href="{% url 'logout' %}"><span class="material-symbols-outlined">
+            logout
+            </span></a>
           {% else %}
-          <a class="nav-link" href="{% url 'login' %}">Login</a>
+          <a class="nav-link" href="{% url 'login' %}"><span class="material-symbols-outlined">
+            login
+            </span></a>
           {% endif %}
         </form>
       </div>

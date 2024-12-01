@@ -62,8 +62,8 @@
       <h5 class="card-title">{{w_item.name}}</h5>
       <p class="card-text">{{w_item.description}}</p>
       <p class="card-text">{{w_item.price}}</p>
-      <a href="{% url 'product' id=w_item.id %}" class="btn btn-primary">Click Here</a>
-      <a href="{% url 'addtowish' id=w_item.id %}" class="btn btn-primary">+ Wishlist</a>
+      <a href="{% url 'product' id=w_item.id %}" class="btn btn-primary btnhome">Click Here</a>
+      <a href="{% url 'addtowish' id=w_item.id %}" class="btn btn-primary btnhome">+ Wishlist</a>
       <a href="{% url 'addtocart' id=w_item.id %}" class="btn btn-primary c-button">+ Cart</a>
 
     </div>
