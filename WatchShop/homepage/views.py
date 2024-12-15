@@ -77,7 +77,7 @@ def logout_user(request):
 from django.shortcuts import get_object_or_404
 def show_product(request, id):
     product = get_object_or_404(WatchesUploads, id=id)
-    review = WatchReview.objects.filter(product=product)
+    review = WatchReview.objects.filter(products=product)
 
     return render(request, "product.html",{"product": product, "reviews": review} )
 

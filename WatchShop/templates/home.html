@@ -56,14 +56,14 @@
   {% for w_item in watches_t %}
 
   <!-- Card Section  -->
-  <div class="card" style="width: 18rem; margin: 5px">
+  <div class="card" style="width: 19rem; margin: 5px">
     <img src="{{w_item.image.url}}" class="card-img-top" alt="..." />
     <div class="card-body">
       <h5 class="card-title">{{w_item.name}}</h5>
       <p class="card-text">{{w_item.description}}</p>
       <p class="card-text">{{w_item.price}}</p>
-      <a href="{% url 'product' id=w_item.id %}" class="btn btn-primary btnhome">Click Here</a>
-      <a href="{% url 'addtowish' id=w_item.id %}" class="btn btn-primary btnhome">+ Wishlist</a>
+      <a href="{% url 'product' id=w_item.id %}" class="btn btn-primary btnhome">View</a>
+      <a href="{% url 'addtowish' id=w_item.id %}" class="btn btn-primary btnhome" style="margin-left: 5px;">+ Wishlist</a>
       <a href="{% url 'addtocart' id=w_item.id %}" class="btn btn-primary c-button">+ Cart</a>
 
     </div>

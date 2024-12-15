@@ -1,21 +1,25 @@
 {% extends 'main.html' %} {% block body_block %} 
 <div class="container mt-5">
     <div class="row">
+        
         <div class="col-md-6">
             <img src="{{product.image.url}}" alt="Not Avaliable" class="img-fluid product-img">
         </div>
-        <div class="col=md-6">
+        <div class="col-md-6">
             <h2>{{product.name}}</h2>
-            <h2>Amount: {{product.price}}</h2>
-            <h2>{{product.description}}</h2>
+            <h4>Amount: {{product.price}}</h4>
+            <h4>{{product.description}}</h4>
+
+            {% for review in reviews %}
+        <!-- <div class="col-md-6" style="padding-left: -1px;"> -->
+            <h4>Rating: {{review.rating}}</h4>
+            <h5>{{review.review_text}}</h5>
+        <!-- </div> -->
+        {% endfor %}
         </div>
+    
     </div>
-    {% for review in reviews %}
-    <div class="col-md-6">
-        <h2>{{review.user.username}}</h2>
-        <h2>Rating: {{review.rating}}</h2>
-        <h2>{{review.review_text}}</h2>
-    </div>
-    {% endfor %}
+    
+    
 </div>
 {% endblock %}
