@@ -1,10 +1,15 @@
 {% extends 'main.html' %} {% block body_block %}
-<form method="post" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data" >
   {% csrf_token %}
-  <div class="form-group">
+  <div class="form-group" style="max-width: 280px;">
     {{ form.as_p }}
-    <button type="submit" class="submit-button">Login</button>
-    <a class="submit-button" href="{% url 'signup' %}" type="button">SignUp</a>
+
+    <div class="form-group" style="display:inline-flex;padding: 19px 11px;">
+      <button type="submit" class="submit-button" style="width: 80px;padding: 0px;margin: 9px" >Login</button>
+
+      <a class="submit-button" href="{% url 'signup' %}" type="button" style="width: 80px;"style="width: 100px;padding: 0px;margin:9px">Signup</a>
+  
+    </div>
   </div>
 </form>
 
